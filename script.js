@@ -1,5 +1,3 @@
-console.log("Start js");
-
 var svg = d3.select("svg"),
     margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = +svg.attr("width") - margin.left - margin.right,
@@ -15,13 +13,16 @@ var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
-    .range(['#d53e4f','#fc8d59','#fee08b','#ffffbf']);
-console.log("Starting the reading");
+    .range(['#d53e4f','#fc8d59','#fee08b','#ffffbf','#e6f598','#99d594','#3288bd','#d53e4f','#fc8d59','#fee08b']);
+console.log("hello");
 d3.csv("data.csv", function(d, i, columns) {
-
-  for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+  for (i = 1, t = 0; i < columns.length; ++i) {
+    t += d[columns[i]] = +d[columns[i]];
+    console.log("iteration" + i);
+    console.log(columns[i]);
+    console.log(d[columns[i]]);
+  }
   d.total = t;
-  console.log("ended the reading");
   return d;
 }, function(error, data) {
   if (error) throw error;
@@ -84,3 +85,4 @@ d3.csv("data.csv", function(d, i, columns) {
       .attr("dy", "0.32em")
       .text(function(d) { return d; });
 });
+console.log("hello final");
